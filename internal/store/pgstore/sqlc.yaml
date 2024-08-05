@@ -1,0 +1,15 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "./queries"
+    schema: "./migrations"
+    gen:
+      go:
+        out: "." # se o . não funcionar, colocar "pgstore"
+        package: "pgstore"
+        sql_package: "pgx/v5" # drver postgres escrito em go
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
